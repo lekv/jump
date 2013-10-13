@@ -1,4 +1,6 @@
-h1. Jump
+# Jump
+
+<a href="http://philz.github.io/jump/">Live Demo</a>
 
 Share-able, customizable URL forwarder.
 

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+body {
+  font: 14px sans-serif;
+}
+th {
+  font: 14px sans-serif;
+}
+td {
+  font: 14px sans-serif;
+}
+
+input {
+  font: 20px sans-serif;
+}
+h1 {
+  font: 30px sans-serif;
+}
+h2 {
+  font: 20px sans-serif;
+}
+.red {
+  color: red;
+}
+</style>
+
+<body>
+
+<h1>Jump</h1>
+<p>
+<input id="search"></input> <input id="jump" type="submit" value="Jump">
+</p>
+<p class="red" id="target"></p>
+
+<h2>Supported Expressions</21>
+<table>
+<thead>
+<tr><th>Name</th><th>RE<br>(Captures)</th><th>Link</th></tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+
+<h2>Help</h2>
+<p>
+Jump is best used as a browser location bar "search engine."  For Chrome, edit your search engines (in Chrome) 
+via <a href="chrome://settings/searchEngines">chrome://settings/searchEngines</a>.  Add the row <tt>("Jump", "j", "http://host:port/?%s")</tt>
+</p>
+
+<p>
+To customize, fork the repo and update <a href="data.js"><tt>data.js</tt></a>.
+</p>
+
+<p>
+To use from the command line, use a shell script like <a href="jump.sh">jump.sh</a>.
+</p>
+
+<a href="https://github.com/philz/jump"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
+
+<script src="data.js"></script>
+<script src="http://d3js.org/d3.v3.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+
+<script>
+var rowTemplate = Mustache.compile("<td>{{name}}</td><td>{{re}}<br>({{captures}})</td><td>{{link}}</td>");
+
+d3.select('tbody').selectAll('tr').data(data).enter()
+  .append('tr')
+  .html(rowTemplate);
+
+function query() {
+  var x = decodeURIComponent(document.location.search.replace("+", " "));
+  x = x.substring(1, x.length - 1);
+  return x;
+}
+
+function run(q) {
+  for (var i = 0; i < data.length; ++i) {
+    var d = data[i];
+    var p = new RegExp(d.re, "i");
+    var m = p.exec(q);
+    if (m) {
+      var context = {}
+      for (j = 0; j < d.captures.length; ++j) {
+        context[d.captures[j]] = m[j + 1];
+      }
+      var output = Mustache.render(d.link, context);
+      return output;
+    }
+  }
+  return;
+}
+  
+$('#search').val(query());
+
+var result = run(query());
+if (result) {
+  $('#target').text(result);
+  _.delay(function() {
+      document.location = result;
+  }, 1000);
+}
+
+$('#jump').click(function() {
+  var q = $('#search').val();
+  var result = run(q);
+  if (result) {
+    $('#target').text(result);
+    document.location = result;
+  }
+});
+</script>

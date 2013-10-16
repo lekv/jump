@@ -73,7 +73,6 @@ d3.select('tbody').selectAll('tr').data(data).enter()
 
 function query() {
   var x = decodeURIComponent(document.location.search.replace("+", " "));
-  x = x.substring(1, x.length - 1);
   return x;
 }
 

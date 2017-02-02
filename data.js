@@ -6,10 +6,20 @@
  *    link: mustache template
  */
 var data = [
-  { 
-    'name': 'Apache JIRAs',
-    're': '(hdfs|hive|avro|yarn|hadoop)[- ](\\d+)', 
-    'captures': [ "project", "id" ], 
+  {
+    'name': 'Cloudera Public JIRA',
+    're': '(access|distro|crunch|flume|hue|impala|cdk|recbreak|sqoop)[- ](\\d+)',
+    'captures': [ "project", "id" ],
+    'link': "https://issues.cloudera.org/browse/{{project}}-{{id}}"
+  }, {
+    'name': 'Apache JIRA',
+    're': '(hdfs|hive|avro|yarn|mapreduce|hadoop|solr|legal|accumulo|ambari|spark)[- ](\\d+)',
+    'captures': [ "project", "id" ],
     'link': "https://issues.apache.org/jira/browse/{{project}}-{{id}}"
+  }, {
+    'name': 'Internal JIRA (catch-all)',
+    're': '([a-zA-Z]+)[- ](\\d+)',
+    'captures': [ "project", "id" ],
+    'link': "http://jira.cloudera.com/browse/{{project}}-{{id}}"
   }
 ];

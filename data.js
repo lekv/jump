@@ -17,7 +17,7 @@ var data = [
     'captures': [ "project", "id" ],
     'link': "https://issues.apache.org/jira/browse/{{project}}-{{id}}"
   }, {
-    'name': 'Internal JIRA (catch-all)',
+    'name': 'Cloudera JIRA (catch-all)',
     're': '([a-zA-Z]+)[- ](\\d+)',
     'captures': [ "project", "id" ],
     'link': "http://jira.cloudera.com/browse/{{project}}-{{id}}"

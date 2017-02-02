@@ -20,6 +20,6 @@ var data = [
     'name': 'Cloudera JIRA (catch-all)',
     're': '([a-zA-Z]+)[- ](\\d+)',
     'captures': [ "project", "id" ],
-    'link': "http://jira.cloudera.com/browse/{{project}}-{{id}}"
+    'link': "https://jira.cloudera.com/browse/{{project}}-{{id}}"
   }
 ];

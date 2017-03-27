@@ -8,12 +8,12 @@
 var data = [
   {
     'name': 'Cloudera Public JIRA',
-    're': '(access|distro|crunch|flume|hue|impala|cdk|recbreak|sqoop)[- ](\\d+)',
+    're': '(access|distro|crunch|flume|hue|cdk|recbreak|sqoop)[- ](\\d+)',
     'captures': [ "project", "id" ],
     'link': "https://issues.cloudera.org/browse/{{project}}-{{id}}"
   }, {
     'name': 'Apache JIRA',
-    're': '(hdfs|hive|avro|yarn|mapreduce|hadoop|solr|legal|accumulo|ambari|spark)[- ](\\d+)',
+    're': '(impala|hdfs|hive|avro|yarn|mapreduce|hadoop|solr|legal|accumulo|ambari|spark)[- ](\\d+)',
     'captures': [ "project", "id" ],
     'link': "https://issues.apache.org/jira/browse/{{project}}-{{id}}"
   }, {

@@ -13,7 +13,7 @@ var data = [
     'link': "https://issues.cloudera.org/browse/{{project}}-{{id}}"
   }, {
     'name': 'Apache JIRA',
-    're': '(impala|hdfs|hive|avro|yarn|mapreduce|hadoop|solr|legal|accumulo|ambari|spark)[- ](\\d+)',
+    're': '(impala|hdfs|hive|avro|yarn|mapreduce|hadoop|solr|legal|accumulo|ambari|spark|parquet)[- ](\\d+)',
     'captures': [ "project", "id" ],
     'link': "https://issues.apache.org/jira/browse/{{project}}-{{id}}"
   }, {
